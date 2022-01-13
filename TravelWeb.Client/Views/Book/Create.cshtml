@@ -1,0 +1,85 @@
+﻿@model TravelWeb.Client.Services.CreateBookViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="form-group">
+    <a class="btn btn-primary" asp-area="" asp-controller="Book" asp-action="Index">Volver</a>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-danger">
+            @Html.ValidationMessage("Errors")
+        </div>
+        <form asp-controller="Book" asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <label>ISBN: </label>
+
+                </div>
+                <div class="col-lg-9">
+                    <input class="form-control" asp-for="Isbn" type="number" name="Isbn"/>
+                    <span asp-validation-for="Isbn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <label >Título: </label>
+                </div>
+                <div class="col-lg-9">
+                    <input class="form-control" asp-for="Title" type="text" name="Title"/>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <label >Sipnosis: </label>
+                </div>
+                <div class="col-lg-9">
+                    <textarea class="form-control" asp-for="Sypnosis" name="Sypnosis" rows="6"></textarea>
+                    <span asp-validation-for="Sypnosis" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <label>Editorial: </label>
+                </div>
+                <div class="col-lg-9">
+                    <select class="form-control" asp-for="EditorialId" asp-items="@ViewBag.Editorials">
+                        <option >Seleccione</option>
+                    </select>
+                    <span asp-validation-for="EditorialId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <label>Número de páginas: </label>
+                </div>
+                <div class="col-lg-9">
+                    <input class="form-control" asp-for="NumberPages" type="number" name="NumberPages"/>
+                    <span asp-validation-for="NumberPages" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <label>Autores: </label>
+                </div>
+                <div class="col-lg-9">
+                    <select class="form-control" asp-for="AuthorId" asp-items="@ViewBag.Authors">
+                        <option>Seleccione</option>
+                    </select>
+                    <span asp-validation-for="AuthorId" class="text-danger"></span>
+                </div>
+            </div>
+            <br/>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-dark">Cancelar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+ 

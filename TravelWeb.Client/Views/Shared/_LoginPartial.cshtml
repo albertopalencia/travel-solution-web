@@ -1,0 +1,31 @@
+﻿ 
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor _httpContextAccessor
+
+ @{
+     var authenticate = _httpContextAccessor.HttpContext?.Session.GetString("authenticate");
+     var userName = _httpContextAccessor.HttpContext?.Session.GetString("userName");
+ }
+
+<ul class="navbar-nav">
+@if (!string.IsNullOrEmpty(authenticate) && authenticate.Equals("true"))
+{
+    <li class="nav-item">
+        <label title="Manage">Hello @userName </label>
+    </li>
+    <li class="nav-item">
+        <form  class="form-inline"   asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Signup">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark"   asp-controller="Account" asp-action="Login" >Login</a>
+    </li>
+}
+</ul>
